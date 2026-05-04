@@ -99,4 +99,132 @@
 
 <main>
 
-...
+  <div class="card">
+    <h2><span class="icon">📋</span> Giới thiệu</h2>
+    <p>
+      <strong>Sổ Chi Tiêu Tự Động</strong> ("ứng dụng") được phát triển bởi cá nhân và cung cấp
+      miễn phí. Ứng dụng giúp bạn tự động theo dõi chi tiêu cá nhân bằng cách đọc tin nhắn SMS
+      giao dịch từ ngân hàng TPBank.
+    </p>
+    <p>
+      Chúng tôi coi trọng quyền riêng tư của bạn. Trang này giải thích rõ ràng loại dữ liệu nào
+      được thu thập, mục đích sử dụng và cách bảo vệ dữ liệu đó.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2><span class="icon">📱</span> Dữ liệu chúng tôi thu thập</h2>
+    <p>Ứng dụng chỉ thu thập các dữ liệu sau, phục vụ trực tiếp cho chức năng quản lý chi tiêu:</p>
+    <ul>
+      <li>
+        <strong>Tin nhắn SMS từ TPBank</strong> — Ứng dụng đọc nội dung SMS từ số tổng đài của
+        TPBank để trích xuất thông tin giao dịch (số tiền, tên người giao dịch, số dư). Ứng dụng
+        <em>không</em> đọc tin nhắn cá nhân hoặc từ các ứng dụng/số khác.
+      </li>
+      <li>
+        <strong>Dữ liệu tài chính từ PDF</strong> — Nếu bạn nhập file sao kê PDF từ TPBank,
+        ứng dụng đọc nội dung file để trích xuất lịch sử giao dịch.
+      </li>
+      <li>
+        <strong>Tài khoản người dùng</strong> — Email và mật khẩu để đăng nhập vào tài khoản
+        cá nhân (qua Supabase Authentication).
+      </li>
+    </ul>
+    <div class="highlight">
+      ✅ Ứng dụng <strong>không</strong> thu thập danh bạ, vị trí, ảnh, hay bất kỳ dữ liệu cá
+      nhân nào khác ngoài thông tin giao dịch ngân hàng.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2><span class="icon">🎯</span> Mục đích sử dụng dữ liệu</h2>
+    <p>Dữ liệu thu thập được sử dụng duy nhất cho các mục đích:</p>
+    <ul>
+      <li>Tự động ghi nhận và phân loại các giao dịch tài chính của bạn</li>
+      <li>Hiển thị báo cáo và biểu đồ chi tiêu theo tháng</li>
+      <li>Đồng bộ dữ liệu giao dịch giữa các thiết bị của bạn</li>
+      <li>Phân loại giao dịch thông minh bằng AI (Gemini API)</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2><span class="icon">🔒</span> Lưu trữ và bảo mật dữ liệu</h2>
+    <p>
+      Dữ liệu giao dịch của bạn được lưu trữ trên nền tảng <strong>Supabase</strong>
+      (supabase.com) — một dịch vụ cơ sở dữ liệu đám mây bảo mật theo tiêu chuẩn quốc tế,
+      sử dụng mã hóa TLS/SSL cho mọi kết nối.
+    </p>
+    <p>
+      Mỗi người dùng chỉ có thể truy cập dữ liệu của chính mình thông qua hệ thống phân quyền
+      Row Level Security (RLS) của Supabase.
+    </p>
+    <div class="highlight">
+      🔐 Nội dung SMS được xử lý cục bộ trên thiết bị của bạn. Chỉ thông tin giao dịch đã trích
+      xuất (số tiền, mô tả) mới được gửi lên server — không bao giờ gửi toàn bộ nội dung SMS.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2><span class="icon">🚫</span> Không chia sẻ với bên thứ ba</h2>
+    <p>
+      Chúng tôi <strong>không bán, không chia sẻ, không cho thuê</strong> dữ liệu cá nhân của
+      bạn với bất kỳ bên thứ ba nào vì mục đích thương mại.
+    </p>
+    <p>Ứng dụng chỉ kết nối với:</p>
+    <ul>
+      <li><strong>Supabase</strong> — lưu trữ dữ liệu giao dịch của bạn</li>
+      <li><strong>Google Gemini API</strong> — phân loại giao dịch bằng AI (chỉ gửi mô tả giao dịch, không gửi thông tin nhận dạng)</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2><span class="icon">⚙️</span> Quyền ứng dụng yêu cầu</h2>
+    <ul>
+      <li>
+        <strong>READ_SMS / RECEIVE_SMS</strong> — Đọc tin nhắn SMS từ TPBank để tự động ghi
+        nhận giao dịch. Đây là quyền cốt lõi của ứng dụng.
+      </li>
+      <li>
+        <strong>INTERNET</strong> — Kết nối đến Supabase để đồng bộ dữ liệu và Gemini API
+        để phân loại giao dịch.
+      </li>
+      <li>
+        <strong>RECEIVE_BOOT_COMPLETED / FOREGROUND_SERVICE</strong> — Cho phép ứng dụng tự
+        động đồng bộ giao dịch mới trong nền.
+      </li>
+    </ul>
+    <p>
+      Bạn có thể thu hồi bất kỳ quyền nào trong <em>Cài đặt → Ứng dụng → Sổ Chi Tiêu Tự Động
+      → Quyền</em> bất cứ lúc nào.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2><span class="icon">👤</span> Quyền của bạn</h2>
+    <ul>
+      <li><strong>Truy cập</strong> — Xem toàn bộ dữ liệu giao dịch của bạn trong ứng dụng</li>
+      <li><strong>Xóa</strong> — Xóa bất kỳ giao dịch nào hoặc toàn bộ tài khoản</li>
+      <li><strong>Xuất dữ liệu</strong> — Dữ liệu của bạn thuộc về bạn</li>
+    </ul>
+    <p>
+      Để yêu cầu xóa toàn bộ dữ liệu, liên hệ qua email bên dưới. Chúng tôi sẽ xử lý
+      trong vòng 7 ngày làm việc.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2><span class="icon">✉️</span> Liên hệ</h2>
+    <p>
+      Nếu bạn có câu hỏi về chính sách bảo mật này hoặc muốn yêu cầu xóa dữ liệu, vui lòng
+      liên hệ:
+    </p>
+    <p>
+      📧 <a href="mailto:gohanvn@gmail.com">gohanvn@gmail.com</a>
+    </p>
+  </div>
+
+  <p class="updated">Cập nhật lần cuối: ngày 04 tháng 05 năm 2026</p>
+
+</main>
+</body>
+</html>
